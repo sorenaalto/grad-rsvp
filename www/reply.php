@@ -7,8 +7,9 @@
 
     <!-- Bootstrap CSS -->
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="js/validate.js"></script>
 
     <title>RSVP</title>
   </head>
@@ -26,13 +27,13 @@
                 <img height='60' src='http://www.dut.ac.za/wp-content/themes/stylish-v1.2.4-child/dut-logo.jpg'/>
             </div>
         </div>
-        <form method='POST' action='save.php'>
+        <form id='rsvp-form' method='POST' action='save.php'>
         <h3>Staff Reply Card</h3>
         <div class="form-group"> <!-- name details -->
             <div class="row">
                 <label for="title" class="col-sm-2">Title:</label>
-                <select class="col-sm-2">
-                    <option>-</option>
+                <select class="col-sm-2" id='frm-title'>
+                    <option></option>
                     <option>Prof</option>
                     <option>Dr</option>
                     <option>Mr</option>
@@ -40,6 +41,7 @@
                     <option>Miss</option>
                     <option>Ms</option>
                 </select>
+                <div class='text-danger' id='err-title'></div>
             </div>
             
 <?php
@@ -48,7 +50,10 @@
         print "\n<div class='row'>";
         foreach($p as $f) {
             print "<label for='$f' class='col-sm-2'>$f:</label>";
-            print "<input type='text' name='$f' id='$f' class='col-sm-3'/>";
+            print "<div class='col-sm-3'>";
+            print "<input type='text' name='$f' id='frm-$f'/>";
+            print "<div id='err-$f'class='text-danger'></div>";
+            print "</div>";
         }
         print "\n</div>";
     }
@@ -105,7 +110,8 @@
     <label for='mailto' class='col-sm-5'>
         Address to which admission cards should be sent:
     </label>
-    <textarea class='col-sm-5' rows='4' name='address'></textarea>
+    <textarea class='col-sm-5' id='frm-Address' rows='4' name='Address'></textarea>
+    <<div class='text-danger' id='err-Address'></div>
 </div>            
         </div>
         <input type='submit'/>
