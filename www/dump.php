@@ -7,8 +7,10 @@
     }
     
     $fname = "grad-rsvp";
-    $qs = "select submission_id,fieldname from formvals where fieldname like 'DBN-%' order by fieldname";
-print "\nqs=$qs";
+    $qs = "select submission_id,fieldname from formvals where ".
+            "(fieldname like 'DBN-%' or fieldname like 'PMB-%') ".
+            "order by fieldname";
+//print "\nqs=$qs";
     if(!$result = $db->query($qs)){
         print "qs=$qs";
         die('There was an error running the query [' . $db->error . ']');
@@ -20,16 +22,19 @@ print "\nqs=$qs";
             $graddate = $row['fieldname'];
             $map = array("graddate"=>$graddate);
             $qs = "select * from formvals where submission_id=$sid";
-print "\nqs=$qs";
+//print "\nqs=$qs";
             if(!$result2= $db->query($qs)) {
+                print "qs=$qs";
+                die('There was an error running the query [' . $db->error . ']');
+            } else {
                 while($row2 = $result2->fetch_assoc()) {
-                    $k = $row['fieldname'];
-                    $v = $row['value'];
-print "...k,v=$k,$v";
+                    $k = $row2['fieldname'];
+                    $v = $row2['value'];
+//print "...k,v=$k,$v";
                     $map[$k] = $v;
                 }
             }
-            $flist = ['graddate','title','Name','Surname',
+            $flist = ['graddate','Title','Name','Surname',
                         'Post','Department','Telephone','Email',
                         'spouse','procession',
                         'Address'];
@@ -41,9 +46,14 @@ print "...k,v=$k,$v";
         }
     }
 
-    print "<table>";
+    print "<table border='1'>";
+    print "\n<tr>";
+    foreach($flist as $f) {
+        print "<th>$f</th>";
+    }
+    print "</tr>";
     foreach($rows as $r) {
-        print "<tr>";
+        print "\n<tr>";
         foreach($r as $v) {
             print "<td>$v</td>";
         }

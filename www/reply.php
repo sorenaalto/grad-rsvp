@@ -32,14 +32,14 @@
         <div class="form-group"> <!-- name details -->
             <div class="row">
                 <label for="title" class="col-sm-2">Title:</label>
-                <select class="col-sm-2" id='frm-title'>
+                <select class="col-sm-2" id='frm-title' name='Title'>
                     <option></option>
-                    <option>Prof</option>
-                    <option>Dr</option>
-                    <option>Mr</option>
-                    <option>Mrs</option>
-                    <option>Miss</option>
-                    <option>Ms</option>
+                    <option value='Prof'>Prof</option>
+                    <option value='Dr'>Dr</option>
+                    <option value='Mr'>Mr</option>
+                    <option value='Mrs'>Mrs</option>
+                    <option value='Miss'>Miss</option>
+                    <option value='Ms'>Ms</option>
                 </select>
                 <div class='text-danger' id='err-title'></div>
             </div>
@@ -62,13 +62,19 @@
         <div class="form-group">
             <h4>Midlands:</h4>
 <?php
+    function makeTag($c,$d,$t) {
+        $dc = explode(' ',$d);
+        $tc = str_replace(':','',$t);
+        return "$c-$dc[1]$dc[0]-$tc";
+    }
+
     $days = ['25 Apr','26 Apr'];
     $times = ['10:00','13:00'];
     foreach($days as $d) {
         print "\n<div class='row'>";
         print "\n<div class='col-sm-2'>$d</div>";
         foreach($times as $t) {
-            $fn="$d$t"; // need to fix
+            $fn=makeTag("PMB",$d,$t);
             print "\n<label for='$fn' class='col-sm-1'>$t</label>";
             print "\n<input type='checkbox' name='$fn' id='$fn' class='col-sm-1'/>";
         }
@@ -84,7 +90,7 @@
         print "\n<div class='row'>";
         print "\n<div class='col-sm-2'>$d</div>";
         foreach($times as $t) {
-            $fn="$d$t"; // need to fix
+            $fn=makeTag("DBN",$d,$t);
             print "\n<label for='$fn' class='col-sm-1'>$t</label>";
             print "\n<input type='checkbox' name='$fn' id='$fn' class='col-sm-1'/>";
         }
@@ -111,7 +117,7 @@
         Address to which admission cards should be sent:
     </label>
     <textarea class='col-sm-5' id='frm-Address' rows='4' name='Address'></textarea>
-    <<div class='text-danger' id='err-Address'></div>
+    <div class='text-danger' id='err-Address'></div>
 </div>            
         </div>
         <input type='submit'/>
