@@ -51,6 +51,7 @@ function getDateTimeSelector($title,$clazz,$days,$times) {
         </div>
         <form id="rsvp-form" method="POST" action="save.php">
         <h3>Staff Reply Card</h3>
+<<<<<<< HEAD
         <div class="form-group row required"> <!-- name details -->
             <label for="title" class="col-sm-2 col-form-label">Title:</label>
             <div class="col-sm-2">
@@ -62,6 +63,19 @@ function getDateTimeSelector($title,$clazz,$days,$times) {
                     <option value="Mrs">Mrs</option>
                     <option value="Miss">Miss</option>
                     <option value="Ms">Ms</option>
+=======
+        <div class="form-group"> <!-- name details -->
+            <div class="row">
+                <label for="title" class="col-sm-2">Title:</label>
+                <select class="col-sm-2" id='frm-title' name='Title'>
+                    <option></option>
+                    <option value='Prof'>Prof</option>
+                    <option value='Dr'>Dr</option>
+                    <option value='Mr'>Mr</option>
+                    <option value='Mrs'>Mrs</option>
+                    <option value='Miss'>Miss</option>
+                    <option value='Ms'>Ms</option>
+>>>>>>> branch 'master' of https://github.com/sorenaalto/grad-rsvp.git
                 </select>
 			</div>
     		</div>
@@ -78,6 +92,7 @@ function getDateTimeSelector($title,$clazz,$days,$times) {
         }
         print "\n</div>";
     }
+<<<<<<< HEAD
     print getDateTimeSelector('Midlands','datetime-midlands',['25 Apr','26 Apr'],['10:00','13:00']);
     print getDateTimeSelector('Durban','datetime-durban',['07 May','08 May','09 May','10 May','14 May'],['09:00','14:00','18:00']);
     ?>            
@@ -105,6 +120,72 @@ function getDateTimeSelector($title,$clazz,$days,$times) {
 				<input type="submit" class="btn btn-primary" />
 			</div>
 		</div>
+=======
+?>
+        </div>
+        <div class="form-group">
+            <h4>Midlands:</h4>
+<?php
+    function makeTag($c,$d,$t) {
+        $dc = explode(' ',$d);
+        $tc = str_replace(':','',$t);
+        return "$c-$dc[1]$dc[0]-$tc";
+    }
+
+    $days = ['25 Apr','26 Apr'];
+    $times = ['10:00','13:00'];
+    foreach($days as $d) {
+        print "\n<div class='row'>";
+        print "\n<div class='col-sm-2'>$d</div>";
+        foreach($times as $t) {
+            $fn=makeTag("PMB",$d,$t);
+            print "\n<label for='$fn' class='col-sm-1'>$t</label>";
+            print "\n<input type='checkbox' name='$fn' id='$fn' class='col-sm-1'/>";
+        }
+        print "</div>";
+    }
+?>
+
+            <h4>Durban:</h4>
+<?php
+    $days = ['07 May','08 May','09 May','10 May','14 May'];
+    $times = ['09:00','14:00','18:00'];
+    foreach($days as $d) {
+        print "\n<div class='row'>";
+        print "\n<div class='col-sm-2'>$d</div>";
+        foreach($times as $t) {
+            $fn=makeTag("DBN",$d,$t);
+            print "\n<label for='$fn' class='col-sm-1'>$t</label>";
+            print "\n<input type='checkbox' name='$fn' id='$fn' class='col-sm-1'/>";
+        }
+        print "</div>";
+    }
+?>
+            
+        </div>
+        <div class="form-group">
+<div class='row'>
+    <label for='procession' class='col-sm-5'>
+        I wish to participate in the academic procession:
+    </label>
+    <input type='checkbox' name='procession'id='procession' class='col-sm-1'/>
+</div>            
+<div class='row'>
+    <label for='spouse' class='col-sm-5'>
+        I will be accompanied by my spouse/partner:
+    </label>
+    <input type='checkbox' name='spouse'id='spouse' class='col-sm-1'/>
+</div>            
+<div class='row'>
+    <label for='mailto' class='col-sm-5'>
+        Address to which admission cards should be sent:
+    </label>
+    <textarea class='col-sm-5' id='frm-Address' rows='4' name='Address'></textarea>
+    <div class='text-danger' id='err-Address'></div>
+</div>            
+        </div>
+        <input type='submit'/>
+>>>>>>> branch 'master' of https://github.com/sorenaalto/grad-rsvp.git
         </form>
         </main>
     </div>
