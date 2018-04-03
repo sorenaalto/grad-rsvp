@@ -1,15 +1,15 @@
 <!doctype html>
 <?php
-function getDateTimeSelector($title,$clazz,$days,$times) {
+function getDateTimeSelector($title,$clazz,$times) {
     $html = "<div class=\"row\"><div class=\"col-sm-12\"><h4 class=\"required\">$title:</h4></div></div>";
     $html .= "<div class=\"timeselector panel panel-default\"><div class=\"panel-body\">";
-    foreach($days as $d) {
+    foreach($times as $d => $tlist) {
         $html .= '<div class="row">';
         $ctr = 0;
-        foreach($times as $t) {
+        foreach($tlist as $t) {
             $id = $clazz.'-'.++$ctr;
-            $fn="$d$t"; // need to fix
-            $html .= '<div class="col-sm-2">';
+            $fn="$clazz-".str_replace(' ','',$d)."-".str_replace(':','',$t);
+            $html .= '<div class="col-sm-4">';
             $html .= "<input type=\"checkbox\" name=\"$fn\" id=\"$id\" class=\"$clazz\"/>";
             $html .= "<label for=\"$id\">$d $t</label>";
             $html .= '</div>';
@@ -78,8 +78,22 @@ function getDateTimeSelector($title,$clazz,$days,$times) {
         }
         print "\n</div>";
     }
-    print getDateTimeSelector('Midlands','datetime-midlands',['25 Apr','26 Apr'],['10:00','13:00']);
-    print getDateTimeSelector('Durban','datetime-durban',['07 May','08 May','09 May','10 May','14 May'],['09:00','14:00','18:00']);
+    $pmb_times = Array(
+      '25 Apr' => ['10:00','13:00'],  
+      '26 Apr' => ['10:00','13:00']
+        );
+
+    $dbn_times = Array(
+      '07 May' => ['09:00','14:00','18:00'],  
+      '08 May' => ['09:00','14:00','18:00'],  
+      '09 May' => ['09:00','14:00','18:00'],  
+      '10 May' => ['09:00','14:00'],  
+      '14 May' => ['09:00','14:00']  
+        );
+
+    print getDateTimeSelector('Midlands','session-PMB',$pmb_times);
+    print getDateTimeSelector('Durban','session-DBN',$dbn_times);
+
     ?>            
         <div class="row">
     			<div class="col-sm-12">
