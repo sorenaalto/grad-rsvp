@@ -16,7 +16,7 @@
     $sid = mysqli_insert_id($db);
     
     foreach($_POST as $k => $v) {
-        print "\n$k => $v";        
+//        print "\n$k => $v";        
         $qs = "insert into formvals (submission_id,fieldname,value) values ($sid,'$k','$v')";
         if(!$result = $db->query($qs)){
             die('There was an error running the query [' . $db->error . ']');
