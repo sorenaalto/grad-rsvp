@@ -8,7 +8,7 @@
     
     $fname = "grad-rsvp";
     $qs = "select submission_id,fieldname from formvals where ".
-            "(fieldname like 'DBN-%' or fieldname like 'PMB-%') ".
+            "(fieldname like 'session-%') ".
             "order by fieldname";
 //print "\nqs=$qs";
     if(!$result = $db->query($qs)){
@@ -34,7 +34,7 @@
                     $map[$k] = $v;
                 }
             }
-            $flist = ['graddate','Title','Name','Surname',
+            $flist = ['session','Title','Name','Surname',
                         'Post','Department','Telephone','Email',
                         'spouse','procession',
                         'Address'];
