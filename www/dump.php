@@ -20,7 +20,7 @@
             // get all the form vals for this submission ID...    
             $sid = $row['submission_id'];
             $graddate = $row['fieldname'];
-            $map = array("graddate"=>$graddate);
+            $map = array("session"=>$graddate);
             $qs = "select * from formvals where submission_id=$sid";
 //print "\nqs=$qs";
             if(!$result2= $db->query($qs)) {
