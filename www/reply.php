@@ -87,20 +87,50 @@ function getDateTimeSelector($title,$clazz,$times) {
       '07 May' => ['09:00','14:00','18:00'],  
       '08 May' => ['09:00','14:00','18:00'],  
       '09 May' => ['09:00','14:00','18:00'],  
-      '10 May' => ['09:00','14:00'],  
+      '10 May' => ['09:00','14:00','18:00'],  
+      '11 May' => ['09:00','14:00','18:00'],  
+      '12 May' => ['09:00','14:00'],  
       '14 May' => ['09:00','14:00']  
         );
 
     print getDateTimeSelector('Midlands','session-PMB',$pmb_times);
     print getDateTimeSelector('Durban','session-DBN',$dbn_times);
 
-    ?>            
+    ?> 
+    <div class="">
         <div class="row">
-    			<div class="col-sm-12">
-    				<input type="checkbox" name="procession"id="procession"/>
+                <div class="col-sm-4">
+                    <b>Academic Procession:</b>
+                </div>
+    			<div class="col-sm-8">
+    				<input type="radio" name="procession" id="processionY" value="Y"/>
     				<label for="procession">I wish to participate in the academic procession</label>
+    				<br>
+    				<input type="radio" name="procession" id="processionN" value="N"/>
+    				<label for="procession">I wish to attend only</label>
     			</div>
-		</div>            
+		</div>    
+        <div class="row">
+                <div class="col-sm-4">
+                    <b>Gown size:</b>
+                </div>
+    			<div class="col-sm-8">
+    				<input type="radio" name="gownsize" id="sizeS" value="S"/>
+    				<label for="sizeS">S</label>
+    				<input type="radio" name="gownsize" id="sizeM" value="M"/>
+    				<label for="sizeM">M</label>
+    				<input type="radio" name="gownsize" id="sizeL" value="L"/>
+    				<label for="sizeL">L</label>
+    				<input type="radio" name="gownsize" id="sizeXL" value="XL"/>
+    				<label for="sizeXL">XL</label>
+    				<input type="radio" name="gownsize" id="sizeXXL" value="XXL"/>
+    				<label for="sizeXXL">XXL</label>
+    				<input type="radio" name="gownsize" id="sizeNone" value="None"/>
+    				<label for="sizeNone">I will bring my own gown</label>
+    			</div>
+		</div>    
+    </div>
+<!--
 		<div class="form-group row">
 			<div class="col-sm-12">
 				<input type="checkbox" name="spouse" id="spouse"/>
@@ -114,6 +144,7 @@ function getDateTimeSelector($title,$clazz,$times) {
 				<div class="text-danger" id="err-Address"></div>
 			</div>
 		</div>
+-->
         <div class="form-group row">
         		<div class="col-sm-12" style="text-align:right;">
 				<input type="submit" class="btn btn-primary" />
