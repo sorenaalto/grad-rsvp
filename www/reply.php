@@ -103,11 +103,8 @@ function getDateTimeSelector($title,$clazz,$times) {
                     <b>Academic Procession:</b>
                 </div>
     			<div class="col-sm-8">
-    				<input type="radio" name="procession" id="processionY" value="Y"/>
+    				<input type="checkbox" name="procession" id="processionY"/>
     				<label for="procession">I wish to participate in the academic procession</label>
-    				<br>
-    				<input type="radio" name="procession" id="processionN" value="N"/>
-    				<label for="procession">I wish to attend only</label>
     			</div>
 		</div>    
         <div class="row">
